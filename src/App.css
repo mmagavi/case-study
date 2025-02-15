@@ -7,19 +7,75 @@
 
 .App {
   background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 250px;
+  height: auto;
 }
 
 .heading {
+  color: black;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90%;
+  height: 100px;
+  padding: 50px 5%;
   background: rgba(255, 255, 255); 
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  font-weight: 700;
-  font-size: 16px;
-  justify-content: center;
+  font-weight: 600;
+  font-size: 30px;
   align-items: center;
-  height: 60px;
+}
+
+/* .contact{
+  padding-left: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: small;
+}
+
+.number{
+  font-size: medium;
+  font-weight: 800
+}
+
+.header_box{
+  font-size: medium;
+  font-weight: 800;
+  padding-left: 10%;
+} */
+
+
+.menu {
+  position:fixed;
+  background-color: #337778;
+  margin-top: 100px;
+  height: 55px;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 90%;
+}
+
+.menu_item {
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 15px;
+}
+
+.bold_menu_item {
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: 900;
+  font-size: 15px;
 }

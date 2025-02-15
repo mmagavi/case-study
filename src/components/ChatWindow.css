@@ -4,6 +4,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+  padding-top: 120px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -19,6 +20,8 @@
   flex-direction: column;
   max-width: 100%;
   margin: 4px 0;
+  padding-right: 80px;
+  padding-left: 80px;
 }
 
 .user-message-container {
@@ -45,7 +48,7 @@
 .user-message {
   align-self: flex-end;
   font-size: 13px;
-  background-color: #1b3875;
+  background-color: #337778;
   color: #ffffff;
   border-top-right-radius: 0;
   text-align: left;
@@ -69,13 +72,14 @@
 .input-area {
   font-size: 15px;
   padding: 10px;
+  padding-bottom: 40px;
   bottom: 0;
-  width: 100%;
   display: flex;
   border-top: 1px solid #ccc;
   background: #fff;
   position: fixed;
-  width: calc(100% - 40px);
+  width: calc(90% - 40px);
+  align-self: center;
 }
 
 .input-area textarea {
@@ -104,8 +108,9 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #121212;
-  color: white;
+  background-color: #F3C04C;
+  color: black;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 700;
 }

@@ -17,7 +17,7 @@ img {
 }
 
 .header {
-  color: black;
+  color: #F3C04C;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@ img {
   background: rgba(255, 255, 255); 
   display: flex;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 32px;
   align-items: center;
 }
 

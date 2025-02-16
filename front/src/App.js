@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <img src="https://partselectcom-gtcdcddbene3cpes.z01.azurefd.net/images/ps-25-year-logo.svg" alt="Part select logo"/>
+        PartSelect Assistant ⚙️
       </div>
       <div className="menu">
         <div className="menu_item"> Find by Brand ▼ </div>

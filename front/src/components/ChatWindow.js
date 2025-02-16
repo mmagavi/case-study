@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatWindow.css";
-import { getAIMessage } from "../api/api";
+import { getAIMessage } from "../api/gptApi";
 import { getPartID } from "../api/getPartID";
 import { getPartInfo } from "../api/getPartInfo";
 import {Message} from "./Message"
@@ -37,21 +37,23 @@ function ChatWindow() {
 
       // Check if the user input contains a part ID
 
-      // GET THE PART ID
+      // Get the part ID from the input
       const part_id = getPartID(input);
       let my_link = null;
 
-      // IF THE PART ID IS NOT NULL, GET THE PART INFO USING PART ID
+      // If we have a part id, use it to get the relevant part information
       if (part_id) {
         my_link = "https://www.partselect.com/" + part_id + "-.htm";
         console.log(my_link);
 
-        // ADD CODE HERE TO PUT THE WEB CONTENT IN THE QUERY
-        let my_server_response = await getPartInfo(part_id);
-        console.log(my_server_response);
-
+        // Try to get the relevant information for the part
+        let get_part_info = await getPartInfo(part_id);
+        if (get_part_info) {
+          input += "The part information for the part mentioned above is: " + get_part_info;
+          console.log(input);
+        } 
       }
-      
+
       let my_response = await getAIMessage(input);
       // My link will be null if there was no Part ID provided. That's okay, because it won't be used.
       setMessages(prevMessages => [...prevMessages, {role: "assistant", content: my_response, link: my_link}]);

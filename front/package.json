@@ -20,6 +20,7 @@
     "langchain": "^0.0.143",
     "marked": "^9.1.2",
     "mui": "^0.0.1",
+    "node-fetch": "^3.3.2",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "pdf-parse": "^1.1.1",

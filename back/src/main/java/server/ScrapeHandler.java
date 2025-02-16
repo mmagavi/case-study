@@ -8,7 +8,7 @@ public class ScrapeHandler {
      * Scrape content from the doc returned by fetch content
      * @param ID
      */
-    public String ScrapeHandler(String ID) {
+    public String handle(String ID) {
         try {
             Document doc;
             doc = FetchContent(ID);

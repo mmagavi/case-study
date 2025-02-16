@@ -35,18 +35,23 @@ function ChatWindow() {
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input }]);
       setInput("");
 
-      const id = getPartID(input);
-      let part_id = null;
+      // Check if the user input contains a part ID
+
+      // GET THE PART ID
+      const part_id = getPartID(input);
       let my_link = null;
+
+      // IF THE PART ID IS NOT NULL, GET THE PART INFO USING PART ID
       if (part_id) {
         my_link = "https://www.partselect.com/" + part_id + "-.htm";
         console.log(my_link);
 
         // ADD CODE HERE TO PUT THE WEB CONTENT IN THE QUERY
-        my_server_response = await getPartInfo(part_id);
+        let my_server_response = await getPartInfo(part_id);
         console.log(my_server_response);
 
       }
+      
       let my_response = await getAIMessage(input);
       // My link will be null if there was no Part ID provided. That's okay, because it won't be used.
       setMessages(prevMessages => [...prevMessages, {role: "assistant", content: my_response, link: my_link}]);

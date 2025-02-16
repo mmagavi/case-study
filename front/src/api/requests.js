@@ -1,4 +1,3 @@
-import { server } from "./App";
 
 /**
  * Make a request to a url via fetch, await for it, then grab the json if it's there
@@ -7,14 +6,15 @@ import { server } from "./App";
  * @returns {Promise<Map<string, string|object>>} A promise resolving to a Map containing 1 key SUCCESS or ERROR, with 
  * details for each as the value
  */
+
 async function makeRequest(url) {
     // Simple GET request using fetch
     // make empty map for responseMap
     var responseMap = new Map();
     try {
-        console.log(`requesting ${server + url}`);
+        console.log(`requesting ${url}`);
         // fetch and wait
-        const response = await fetch(server + url);
+        const response = await fetch(url);
         try {
             // fetch worked! let's grab json!
             const data = await response.json();
@@ -25,7 +25,7 @@ async function makeRequest(url) {
         }
     } catch (error) {
         // if fetch failed, we failed to make request!
-        responseMap.set("ERROR", `failed to request from "${server + url}", error = "${error}"`);
+        responseMap.set("ERROR", `failed to request from "${url}", error = "${error}"`);
     }
     // resolve to responseMap
     return new Promise((resolve) => resolve(responseMap));
@@ -47,7 +47,9 @@ async function checkResponse(response) {
             if (typeof response_success === "Document") {
                 // type is document! what we want :)
                 // turn it into dict and look for result!
-                const resultMap = jsonObjectToMap(response_success);
+
+                // turn document into dict
+                const resultMap = response_success;
                 resolve(resultMap);
             } else {
                 // type is not object! :(
@@ -57,33 +59,4 @@ async function checkResponse(response) {
     });
 }
 
-/**
- * Function to turn our JSON objects to string maps!
- * @param {Object} object
- * @returns {Map<string, string>} A Map containing the object's key-value pairs as strings
- */
-function jsonObjectToMap(object) {
-    // grab keys and values and make a dict!
-    const resultMap = new Map();
-    Object.entries(object).forEach(([key, value]) => {
-        resultMap.set(key, String(value));
-    });
-    return resultMap;
-}
-
-/**
- * Ping the server and check if we get a code!
- * @param {Function} setStatus - Function to set status after pinging
- */
-function ping(setStatus) {
-    // fetch no endpoint on server
-    fetch(server)
-        .then(
-            // if we successfully get a response, we are online!
-            () => setStatus("Online :)"),
-            // if we fail to connect, we are offline!
-            (failure) => { console.log(`ERROR: failed to ping ${server}`); setStatus("Offline :("); }
-        );
-}
-
-export { makeRequest, ping, checkResponse, jsonObjectToMap };
+export { makeRequest, checkResponse};

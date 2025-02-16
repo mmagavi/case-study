@@ -8,6 +8,10 @@ export function getPartID(str) {
 
     if (regex.test(str)) {
         const match = str.match(regex);
+
+        console.log("Got part ID: ")
+        console.log(match[0])
+        
         return match[0]
     } else {
         return null

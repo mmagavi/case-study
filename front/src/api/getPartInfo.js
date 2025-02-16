@@ -1,4 +1,5 @@
 import { checkResponse } from "./requests";
+import { makeRequest } from "./requests";
 
 /**
  * Query my backend for part information
@@ -10,11 +11,11 @@ export async function getPartInfo(part_id) {
     // Return part information from my locally hosted server.
 
     // URL to query
-    my_server = "http://localhost:3333";
+    let my_server = "http://localhost:3333/getInfoFromID?";
 
-    url = my_server + "/id/" + part_id;
+    let url = my_server + "id=" + part_id;
 
-    response = await makeRequest(url);
+    let response = await makeRequest(url);
 
     // Check response
     if (checkResponse(response)) {

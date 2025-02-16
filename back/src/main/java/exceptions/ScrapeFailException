@@ -1,8 +1,0 @@
-package exceptions;
-
-public class ScrapeFailException extends Exception{
-
-    public ScrapeFailException(String message){
-        super(message);
-    }
-}

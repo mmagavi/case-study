@@ -1,8 +1,0 @@
-package exceptions;
-
-public class FetchFailException extends Exception{
-
-    public FetchFailException(String message){
-        super(message);
-    }
-}

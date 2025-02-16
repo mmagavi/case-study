@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-          🔩 PartSelect
+          PartSelect
       </div>
       <div className="menu">
         <div className="menu_item"> Find by Brand ▼ </div>

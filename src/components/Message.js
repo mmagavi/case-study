@@ -16,7 +16,7 @@ export function Message(role, content, link, index) {
                 <div key={index} className="assistant-message-container">
                     <div className="message assistant-message">
                     <div  className="content" dangerouslySetInnerHTML={{ __html: html_text }} />
-                        <div className="link-box"><a href={link}><img className="icon" src="https://static.thenounproject.com/png/2166724-200.png" alt="gear icon"/> Visit part page on PartSelect.com </a></div>
+                        <div className="link-box"><a href={link}>🔩 Visit part page on PartSelect.com </a></div>
                     </div>
                 </div>
             )

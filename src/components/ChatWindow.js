@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatWindow.css";
-import { getAIMessage } from "../api/gptApi";
-import { getPartID } from "../api/getPartID";
-import { getPartInfo } from "../api/getPartInfo";
-import {Message} from "./Message"
+import { getServerResponse } from "../api/serverRequest";
+import { Message } from "./Message"
 
 /**
  * Component for the chat window
@@ -12,8 +10,7 @@ function ChatWindow() {
 
   const defaultMessage = [{
     role: "assistant",
-    content: "Hello, how can I help you today?",
-    link: null
+    content: "Hello, how can I help you today?"
   }];
 
   const [messages,setMessages] = useState(defaultMessage)
@@ -34,31 +31,16 @@ function ChatWindow() {
       // Set user message
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input }]);
       setInput("");
+
+      // Show loading sign
       setLoading(true);
 
-      // Check if the user input contains a part ID
+      let my_response = await getServerResponse(input);
 
-      // Get the part ID from the input
-      const part_id = getPartID(input);
-      let my_link = null;
-
-      // If we have a part id, use it to get the relevant part information
-      if (part_id) {
-        my_link = "https://www.partselect.com/" + part_id + "-.htm";
-        console.log(my_link);
-
-        // Try to get the relevant information for the part
-        let get_part_info = await getPartInfo(part_id);
-        if (get_part_info) {
-          input += "The part information for the part mentioned above is: " + get_part_info;
-          console.log(input);
-        } 
-      }
-
-      let my_response = await getAIMessage(input);
       // My link will be null if there was no Part ID provided. That's okay, because it won't be used.
+      // Don't display loading sign
       setLoading(false);
-      setMessages(prevMessages => [...prevMessages, {role: "assistant", content: my_response, link: my_link}]);
+      setMessages(prevMessages => [...prevMessages, {role: "assistant", content: my_response}]);
     }
   };
 

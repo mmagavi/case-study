@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import ChatWindow from "./components/ChatWindow";
 
+
 /**
  * Main component of the application
  */
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-      ⚙️ PartSelect Assistant
+        PartSelect Assistant
       </div>
       <div className="menu">
         <div className="menu_item"> Find by Brand </div>

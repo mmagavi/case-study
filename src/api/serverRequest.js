@@ -1,4 +1,3 @@
-
 // Create a context for the model
 let conversationHistory = [
   { role: "system", content: `You are a kind and helpful assistant representing PartSelect helping a user on an appliance part website, PartSelect. 
@@ -34,47 +33,47 @@ let conversationHistory = [
     ` }
 ];
 
+// THE CODE BELOW CURRENTLY DOES NOT KEEP TRACK OF THE CONVERSATION HISTORY. THIS IS BECAUSE SUCH REQUESTS CAUSE RATE-LIMIT ISSUES. 
+
 /**
- * Call the GPT API to get a response to the user's question
+ * Call my backend to get a response to the user's question
  * @param {*} userQuery 
  * @returns Either GPT's response or an error message
  */
-export const getAIMessage = async (userQuery) => {
+export const getServerResponse = async (userQuery) => {
 
-  conversationHistory.push({ role: "user", content: userQuery });
+  // conversationHistory.push({ role: "user", content: userQuery });
 
   try {
-    // Call the API
-    const completion = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-          model: "gpt-4o-mini",
-          messages: conversationHistory
-      })
-    });
+    // Query the server
 
-    // Check that the response got fulfilled
-    if (!completion.ok) {
-      throw new Error(`API Error: ${completion.statusText}`);
-    }
+    const my_server = "http://localhost:3000";
 
-    const data = await completion.json();
+    let request = my_server + "/api/v1/agent/" + encodeURIComponent(userQuery) + "/" + encodeURIComponent(JSON.stringify(conversationHistory));
 
-    if (data.choices && data.choices.length > 0) {
-      let get_response = data.choices[0].message.content;
-      console.log(get_response);
-      conversationHistory.push({ role: "assistant", content: get_response });
-      return get_response;
+    console.log(request);
+
+    const response = await fetch(request);
+
+    console.log(response)
+
+    if (response.ok) {
+
+      const data = await response.json();
+
+      const agentResponse = data.agentResponse;
+
+      // conversationHistory.push({ role: "agent", content: agentResponse });
+
+      return agentResponse;
+
     } else {
-      throw new Error("No choices in the response");
+      // If the server returns an error, we want to return a string
+      return "Sorry, something went wrong with the request. Please try again later.";
     }
+
   }  catch (error) {
     // If there's an error we just want to return a string
     return "Sorry, something went wrong with the request. Please try again later.";
   }
-
 };

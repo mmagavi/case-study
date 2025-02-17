@@ -11,7 +11,7 @@ import "./Message.css"
  * @param {*} index Key to map messages
  * @returns 
  */
-export function Message(role, content, link, index) {
+export function Message(role, content, index) {
 
     let html_text = marked(content);
     let message_container_class = `${role}-message-container`;
@@ -21,7 +21,6 @@ export function Message(role, content, link, index) {
         <div key={index} className={message_container_class}>
             <div className={message_class}>
                 <div  className="content" dangerouslySetInnerHTML={{ __html: html_text }} />
-                {link && (<div className="link-box"><a href={link}>🔩 Visit part page on PartSelect.com </a></div>)}
             </div>
         </div>
     )

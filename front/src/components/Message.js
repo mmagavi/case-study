@@ -13,37 +13,16 @@ import "./Message.css"
  */
 export function Message(role, content, link, index) {
 
-    let html_text = marked(content.trim());
+    let html_text = marked(content);
+    let message_container_class = `${role}-message-container`;
+    let message_class = `message ${role}-message`;
     
-    if (role == "assistant"){
-        if (link) {
-            // If we have a link, return an assistant message with a link
-            return(
-                <div key={index} className="assistant-message-container">
-                    <div className="message assistant-message">
-                    <div  className="content" dangerouslySetInnerHTML={{ __html: html_text }} />
-                        <div className="link-box"><a href={link}>🔩 Visit part page on PartSelect.com </a></div>
-                    </div>
-                </div>
-            )
-        } else {
-            // Else, return one without a link
-            return(
-                <div key={index} className="assistant-message-container">
-                    <div className="message assistant-message">
-                        <div className="content" dangerouslySetInnerHTML={{ __html: html_text}}/>
-                    </div>
-                </div>
-            )
-        }
-    } else {
-        // User message will always have the same style
-        return(
-            <div key={index}  className="user-message-container">
-                <div className="message user-message">
-                    <div  className="content" dangerouslySetInnerHTML={{ __html: html_text}} />
-                </div>
+    return(
+        <div key={index} className={message_container_class}>
+            <div className={message_class}>
+                <div  className="content" dangerouslySetInnerHTML={{ __html: html_text }} />
+                {link && (<div className="link-box"><a href={link}>🔩 Visit part page on PartSelect.com </a></div>)}
             </div>
-        )
-    }
+        </div>
+    )
 }

@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-      ⚙️ PartSelect Assistant 
+      PartSelect Assistant
       </div>
       <div className="menu">
-        <div className="menu_item"> Find by Brand ▼ </div>
-        <div className="menu_item"> Find by Product ▼ </div>
+        <div className="menu_item"> Find by Brand </div>
+        <div className="menu_item"> Find by Product </div>
         <div className="menu_item"> Find by Symptom </div>
         <div className="menu_item"> Contact </div>
         <div className="menu_item"> Blog </div>

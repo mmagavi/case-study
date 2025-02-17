@@ -83,6 +83,7 @@
   position: fixed;
   width: calc(92% - 40px);
   align-self: center;
+  background-color: white;
 }
 
 .input-area textarea {

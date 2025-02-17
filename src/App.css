@@ -26,10 +26,11 @@ img {
   padding: 25px 5% 20px 5%;
   display: flex;
   font-weight: 550;
-  font-size: 28px;
+  font-size: 26px;
   align-items: baseline;
   text-align: end;
   font-family: 'Fira Sans', sans-serif;
+  background-color: white;
 }
 
 .emoji {

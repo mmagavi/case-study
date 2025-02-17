@@ -11,10 +11,9 @@ export function getPartID(str) {
 
         console.log("Got part ID: ")
         console.log(match[0])
-        
+
         return match[0]
     } else {
         return null
     }
 }
-

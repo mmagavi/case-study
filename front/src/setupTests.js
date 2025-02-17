@@ -11,15 +11,15 @@ import '@testing-library/jest-dom';
 test("test that elements render properly", async() => {
     render(<App />);
 
-    // check that the header is rendered
+    // Check that the header is rendered
     const header = screen.getByText("PartSelect");
     expect(header).toBeInTheDocument();
 
-    // check that the menu is rendered
+    // Check that the menu is rendered
     const menu = screen.getByText("Find by Brand ▼");
     expect(menu).toBeInTheDocument();
 
-    // check that the chat window is rendered
+    // Check that the chat window is rendered
     const chatWindow = screen.getByText("Chat with Assistant");
     expect(chatWindow).toBeInTheDocument();
 
@@ -37,4 +37,9 @@ test("test that elements render properly", async() => {
     userEvent.click(button);
     const message = screen.getByText("Hello, world!");
     expect(message).toBeInTheDocument();
+
+    // Check that initial message is rendered from the agent
+    const agentMessage = screen.getByText("Hello, how can I help you today?");
+    expect(agentMessage).toBeInTheDocument();
+
 })

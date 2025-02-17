@@ -18,7 +18,7 @@ function ChatWindow() {
 
   const [messages,setMessages] = useState(defaultMessage)
   const [input, setInput] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -34,6 +34,7 @@ function ChatWindow() {
       // Set user message
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input }]);
       setInput("");
+      setLoading(true);
 
       // Check if the user input contains a part ID
 
@@ -56,6 +57,7 @@ function ChatWindow() {
 
       let my_response = await getAIMessage(input);
       // My link will be null if there was no Part ID provided. That's okay, because it won't be used.
+      setLoading(false);
       setMessages(prevMessages => [...prevMessages, {role: "assistant", content: my_response, link: my_link}]);
     }
   };
@@ -65,6 +67,11 @@ function ChatWindow() {
           {messages.map((message, index) => (
               Message(message.role, message.content, message.link, index)
           ))}
+          {loading && (
+            <div className="loading">
+              <p>Loading...</p>
+            </div>
+          )}
           <div ref={messagesEndRef} />
           <div className="input-area">
             <input

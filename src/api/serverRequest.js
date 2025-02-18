@@ -33,7 +33,6 @@ let conversationHistory = [
     ` }
 ];
 
-// THE CODE BELOW CURRENTLY DOES NOT KEEP TRACK OF THE CONVERSATION HISTORY. THIS IS BECAUSE SUCH REQUESTS CAUSE RATE-LIMIT ISSUES. 
 
 /**
  * Call my backend to get a response to the user's question
@@ -42,7 +41,7 @@ let conversationHistory = [
  */
 export const getServerResponse = async (userQuery) => {
 
-  // conversationHistory.push({ role: "user", content: userQuery });
+  conversationHistory.push({ role: "user", content: userQuery });
 
   try {
     // Query the server
@@ -63,7 +62,7 @@ export const getServerResponse = async (userQuery) => {
 
       const agentResponse = data.agentResponse;
 
-      // conversationHistory.push({ role: "agent", content: agentResponse });
+      conversationHistory.push({ role: "system", content: agentResponse });
 
       return agentResponse;
 

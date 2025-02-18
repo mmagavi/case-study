@@ -6,7 +6,7 @@ let conversationHistory = [
     If a user provides a valid part ID, there will be information included about that part. Use that information to forumlate a response. 
     If the user provides multiple partIDs, answer the question about the first part ID provided and let the user know that you can only answer questions about one part at a time.
     If the user asks a question that is not related to providing product information and assisting with customer transactions, respond with a message that you can only answer questions related to PartSelect.
-    If the user asks a question about diagnosing their appliance issue, respond with a message that you cannot diagnose appliance issues. 
+    If the user asks a question about diagnosing their appliance issue, redirect them to pinpoint the specific part that is causing an issue.
     Provide links and additional resources when necessary.
 
     Additional information about PartSelect:

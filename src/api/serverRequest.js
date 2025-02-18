@@ -39,8 +39,6 @@ let conversationHistory = [
  */
 export const getServerResponse = async (userQuery) => {
 
-  conversationHistory.push({ role: "user", content: userQuery });
-
   try {
     // Query the server
 
@@ -54,13 +52,15 @@ export const getServerResponse = async (userQuery) => {
 
     console.log(response)
 
+    conversationHistory.push({ role: "user", content: userQuery });
+
     if (response.ok) {
 
       const data = await response.json();
 
       const agentResponse = data.agentResponse;
 
-      conversationHistory.push({ role: "system", content: agentResponse });
+      conversationHistory.push({ role: "assistant", content: agentResponse });
 
       return agentResponse;
 
